@@ -1,10 +1,11 @@
 #pragma once
+#include "Pong.hpp"
 
 #include "ControllerComponent.hpp"
 
-class PlayerControllerComponent : public ControllerComponent
+class PONG_API PlayerControllerComponent : public ControllerComponent
 {
-	REFLECTED_CLASS(PlayerControllerComponent, ControllerComponent);
+	REFLECTED_CLASS(PlayerControllerComponent, ControllerComponent, PONG_API);
 
 public:
 

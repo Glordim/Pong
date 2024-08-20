@@ -1,4 +1,5 @@
 #pragma once
+#include "Pong.hpp"
 
 #include <HodEngine/Game/Component.hpp>
 #include <HodEngine/Game/Components/Node2dComponent.hpp>
@@ -6,9 +7,9 @@
 
 class PawnComponent;
 
-class ControllerComponent : public hod::game::Component
+class PONG_API ControllerComponent : public hod::game::Component
 {
-	REFLECTED_CLASS(ControllerComponent, hod::game::Component);
+	REFLECTED_CLASS(ControllerComponent, hod::game::Component, PONG_API);
 
 public:
 

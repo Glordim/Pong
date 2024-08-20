@@ -1,12 +1,13 @@
 #pragma once
+#include "Pong.hpp"
 
 #include <HodEngine/Game/Component.hpp>
 
 class ControllerComponent;
 
-class PawnComponent : public hod::game::Component
+class PONG_API PawnComponent : public hod::game::Component
 {
-	REFLECTED_CLASS(PawnComponent, hod::game::Component);
+	REFLECTED_CLASS(PawnComponent, hod::game::Component, PONG_API);
 
 	friend class ControllerComponent;
 

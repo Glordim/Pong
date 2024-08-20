@@ -1,13 +1,8 @@
+#include "Pong.hpp"
 #include <HodEngine/Game/ComponentFactory.hpp>
 
 #include "Components/BarComponent.hpp"
 #include "Components/PlayerControllerComponent.hpp"
-
-extern "C"
-{
-	__declspec(dllexport) int Init();
-	__declspec(dllexport) int Clean();
-}
 
 /// @brief 
 /// @return 
