@@ -1,16 +1,16 @@
 #pragma once
 #include "Pong.hpp"
 
-#include "PawnComponent.hpp"
+#include "Pawn.hpp"
 
 namespace hod::game
 {
 	class Node2dComponent;
 }
 
-class PONG_API BarComponent : public PawnComponent
+class PONG_API Bar : public Pawn
 {
-	REFLECTED_CLASS(BarComponent, PawnComponent, PONG_API);
+	REFLECTED_CLASS(Bar, Pawn, PONG_API);
 
 public:
 

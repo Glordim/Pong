@@ -1,16 +1,16 @@
 #include "Pong.hpp"
 #include <HodEngine/Game/ComponentFactory.hpp>
 
-#include "Components/BarComponent.hpp"
-#include "Components/PlayerControllerComponent.hpp"
+#include "Components/Bar.hpp"
+#include "Components/PlayerController.hpp"
 
 /// @brief 
 /// @return 
 int Init()
 {
 	hod::game::ComponentFactory* componentFactory = hod::game::ComponentFactory::GetInstance();
-	componentFactory->Register<BarComponent>();
-	componentFactory->Register<PlayerControllerComponent>();
+	componentFactory->Register<Bar>();
+	componentFactory->Register<PlayerController>();
 	return 0;
 }
 
@@ -19,7 +19,7 @@ int Init()
 int Clean()
 {
 	hod::game::ComponentFactory* componentFactory = hod::game::ComponentFactory::GetInstance();
-	componentFactory->Unregister<BarComponent>();
-	componentFactory->Unregister<PlayerControllerComponent>();
+	componentFactory->Unregister<Bar>();
+	componentFactory->Unregister<PlayerController>();
 	return 0;
 }
