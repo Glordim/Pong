@@ -15,6 +15,7 @@ DESCRIBE_REFLECTED_CLASS(Ball, Component)
 
 Ball::Ball()
 : _onCollisionEnterSlot(std::bind(&Ball::OnCollisionEnter, this, std::placeholders::_1))
+, _onCollisionExitSlot(std::bind(&Ball::OnCollisionExit, this, std::placeholders::_1))
 {
 
 }
@@ -23,11 +24,17 @@ void Ball::OnAwake()
 {
 	std::shared_ptr<Rigidbody2dComponent> rigidbody2d = GetEntity()->GetComponent<Rigidbody2dComponent>();
 	rigidbody2d->GetOnCollisionEnterEvent() += _onCollisionEnterSlot;
+	rigidbody2d->GetOnCollisionExitEvent() += _onCollisionExitSlot;
 
 	new Ball();
 }
 
 void Ball::OnCollisionEnter(const hod::physics::Collision& collision)
 {
-	OUTPUT_MESSAGE("{} / {}", (void*)collision._colliderA, (void*)collision._colliderB);
+	OUTPUT_MESSAGE("Enter {} / {}", (void*)&collision._colliderA, (void*)&collision._colliderB);
+}
+
+void Ball::OnCollisionExit(const hod::physics::Collision& collision)
+{
+	OUTPUT_MESSAGE("Exit {} / {}", (void*)&collision._colliderA, (void*)&collision._colliderB);
 }
