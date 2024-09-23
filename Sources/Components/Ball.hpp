@@ -27,10 +27,12 @@ public:
 	void	OnCollisionEnter(const hod::physics::Collision& collision);
 	void	OnCollisionExit(const hod::physics::Collision& collision);
 
+	void	LaunchBall();
+
 private:
 
 	hod::Event<const hod::physics::Collision&>::Slot _onCollisionEnterSlot;
 	hod::Event<const hod::physics::Collision&>::Slot _onCollisionExitSlot;
 
-	float _speed = 3.0f;
+	float _speed = 0.25f;
 };

@@ -1,5 +1,5 @@
 #include "PlayerController.hpp"
-#include "Bar.hpp"
+#include "Paddle.hpp"
 
 #include <HodEngine/Game/Entity.hpp>
 #include <HodEngine/Input/InputManager.hpp>
@@ -21,19 +21,25 @@ void PlayerController::OnAwake()
 
 void PlayerController::OnUpdate()
 {
+	std::shared_ptr<Paddle> paddle = std::static_pointer_cast<Paddle>(GetPawn());
+
 	InputManager* inputManager = InputManager::GetInstance();
 
 	Input::State upState = inputManager->GetInputState(InputId::KeyW);
 	if (upState.IsPressed())
 	{
-		std::shared_ptr<Bar> bar = std::static_pointer_cast<Bar>(GetPawn());
-		bar->Move(upState._value);
+		paddle->Move(upState._value);
 	}
-
-	Input::State downState = inputManager->GetInputState(InputId::KeyS);
-	if (downState.IsPressed())
+	else
 	{
-		std::shared_ptr<Bar> bar = std::static_pointer_cast<Bar>(GetPawn());
-		bar->Move(-downState._value);
+		Input::State downState = inputManager->GetInputState(InputId::KeyS);
+		if (downState.IsPressed())
+		{
+			paddle->Move(-downState._value);
+		}
+		else
+		{
+			paddle->Move(0.0f);
+		}
 	}
 }
