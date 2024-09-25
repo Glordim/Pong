@@ -3,6 +3,7 @@
 
 #include <HodEngine/Game/Component.hpp>
 #include <HodEngine/Core/Event.hpp>
+#include <HodEngine/Core/Math/Vector2.hpp>
 
 namespace hod::game
 {
@@ -23,6 +24,7 @@ public:
 			Ball();
 
 	void	OnAwake() override;
+	void	OnUpdate() override;
 
 	void	OnCollisionEnter(const hod::physics::Collision& collision);
 	void	OnCollisionExit(const hod::physics::Collision& collision);
@@ -35,4 +37,5 @@ private:
 	hod::Event<const hod::physics::Collision&>::Slot _onCollisionExitSlot;
 
 	float _speed = 0.25f;
+	hod::Vector2 _lastVelocity;
 };

@@ -1,0 +1,24 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "(Windows) Launch",
+			"type": "cppvsdbg",
+			"request": "launch",
+			//"program": "${workspaceFolder}/bazel-bin/Sources/EditorApplication/HodEditor.exe",
+			"program": "E:/HodEngine/build/Editor_Debug/HodApplication.exe",
+			"args": ["--ProjectPath", "E:/Pong/Pong.hod"],
+			"symbolSearchPath": "E:\\Pong\\build\\Editor_Debug",
+			"loadAllSymbols": true,
+			"stopAtEntry": false,
+			//"cwd": "E:/Pong/Pong.hod",
+			"environment": [],
+			"console": "integratedTerminal",
+			//"preLaunchTask": "Build HodEditor",
+			"preLaunchTask": "Build target",
+		}
+	]
+}
