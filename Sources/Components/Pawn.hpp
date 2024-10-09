@@ -1,5 +1,5 @@
 #pragma once
-#include "Pong.hpp"
+#include "../Pong.hpp"
 
 #include <HodEngine/Game/Component.hpp>
 

@@ -19,6 +19,8 @@ DESCRIBE_REFLECTED_CLASS(Ball, Component)
 Ball::Ball()
 : _onCollisionEnterSlot(std::bind(&Ball::OnCollisionEnter, this, std::placeholders::_1))
 , _onCollisionExitSlot(std::bind(&Ball::OnCollisionExit, this, std::placeholders::_1))
+, _onTriggerEnterSlot(std::bind(&Ball::OnTriggerEnter, this, std::placeholders::_1, std::placeholders::_2))
+, _onTriggerExitSlot(std::bind(&Ball::OnTriggerExit, this, std::placeholders::_1, std::placeholders::_2))
 {
 
 }
@@ -28,6 +30,8 @@ void Ball::OnAwake()
 	std::shared_ptr<Rigidbody2dComponent> rigidbody2d = GetEntity()->GetComponent<Rigidbody2dComponent>();
 	rigidbody2d->GetOnCollisionEnterEvent() += _onCollisionEnterSlot;
 	rigidbody2d->GetOnCollisionExitEvent() += _onCollisionExitSlot;
+	rigidbody2d->GetOnTriggerEnterEvent() += _onTriggerEnterSlot;
+	rigidbody2d->GetOnTriggerExitEvent() += _onTriggerExitSlot;
 
 	LaunchBall();
 }
@@ -49,7 +53,7 @@ void Ball::OnUpdate()
 	std::shared_ptr<Node2dComponent> node2d = GetEntity()->GetComponent<Node2dComponent>();
 	Vector2 position = node2d->GetWorldMatrix().GetTranslation();
 
-	World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(_lastVelocity) * 0.3f, Color(1.0f, 1.0f, 1.0f, 1.0f));
+	//World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(_lastVelocity) * 0.3f, Color(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
 void Ball::OnCollisionEnter(const hod::physics::Collision& collision)
@@ -70,9 +74,9 @@ void Ball::OnCollisionEnter(const hod::physics::Collision& collision)
 	std::shared_ptr<Node2dComponent> node2d = GetEntity()->GetComponent<Node2dComponent>();
 	Vector2 position = node2d->GetWorldMatrix().GetTranslation();
 
-	World::GetInstance()->DrawDebugLine(position, position - Vector2::Normalize(_lastVelocity), Color(1.0f, 0.0f, 0.0f, 1.0f), 3.0f);
-	World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(collision._normal), Color(0.0f, 0.0f, 1.0f, 1.0f), 3.0f);
-	World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(newVelocity), Color(0.0f, 1.0f, 0.0f, 1.0f), 3.0f);
+	//World::GetInstance()->DrawDebugLine(position, position - Vector2::Normalize(_lastVelocity), Color(1.0f, 0.0f, 0.0f, 1.0f), 3.0f);
+	//World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(collision._normal), Color(0.0f, 0.0f, 1.0f, 1.0f), 3.0f);
+	//World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(newVelocity), Color(0.0f, 1.0f, 0.0f, 1.0f), 3.0f);
 
 	std::shared_ptr<Rigidbody2dComponent> rigidbody2d = GetEntity()->GetComponent<Rigidbody2dComponent>();
     rigidbody2d->SetVelocity(newVelocity);
@@ -86,4 +90,14 @@ void Ball::OnCollisionEnter(const hod::physics::Collision& collision)
 void Ball::OnCollisionExit(const hod::physics::Collision& collision)
 {
 	//OUTPUT_MESSAGE("Exit {} / {}", (void*)&collision._colliderA, (void*)&collision._colliderB);
+}
+
+void Ball::OnTriggerEnter(const hod::physics::Collider& trigger, const hod::physics::Collider& visitor)
+{
+	OUTPUT_MESSAGE("Trigger Enter");
+}
+
+void Ball::OnTriggerExit(const hod::physics::Collider& trigger, const hod::physics::Collider& visitor)
+{
+	OUTPUT_MESSAGE("Trigger Exit");
 }

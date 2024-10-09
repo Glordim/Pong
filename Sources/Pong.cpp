@@ -1,9 +1,12 @@
 #include "Pong.hpp"
 #include <HodEngine/Game/ComponentFactory.hpp>
+#include <HodEngine/Core/Memory/MemoryOperator.hpp>
 
 #include "Components/Ball.hpp"
 #include "Components/Paddle.hpp"
 #include "Components/PlayerController.hpp"
+
+REDIRECT_NEW_DELETE_OPERATOR_TO_MEMORY_MANAGER
 
 /// @brief 
 /// @return 

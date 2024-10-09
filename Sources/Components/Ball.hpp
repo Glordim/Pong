@@ -1,5 +1,5 @@
 #pragma once
-#include "Pong.hpp"
+#include "../Pong.hpp"
 
 #include <HodEngine/Game/Component.hpp>
 #include <HodEngine/Core/Event.hpp>
@@ -13,6 +13,7 @@ namespace hod::game
 namespace hod::physics
 {
 	struct Collision;
+	class Collider;
 }
 
 class PONG_API Ball : public hod::game::Component
@@ -29,12 +30,18 @@ public:
 	void	OnCollisionEnter(const hod::physics::Collision& collision);
 	void	OnCollisionExit(const hod::physics::Collision& collision);
 
+	void	OnTriggerEnter(const hod::physics::Collider& trigger, const hod::physics::Collider& visitor);
+	void	OnTriggerExit(const hod::physics::Collider& trigger, const hod::physics::Collider& visitor);
+
 	void	LaunchBall();
 
 private:
 
 	hod::Event<const hod::physics::Collision&>::Slot _onCollisionEnterSlot;
 	hod::Event<const hod::physics::Collision&>::Slot _onCollisionExitSlot;
+
+	hod::Event<const hod::physics::Collider&, const hod::physics::Collider&>::Slot _onTriggerEnterSlot;
+	hod::Event<const hod::physics::Collider&, const hod::physics::Collider&>::Slot _onTriggerExitSlot;
 
 	float _speed = 0.25f;
 	hod::Vector2 _lastVelocity;
