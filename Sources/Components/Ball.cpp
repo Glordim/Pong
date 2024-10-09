@@ -39,7 +39,7 @@ void Ball::OnAwake()
 void Ball::LaunchBall()
 {
 	float randomDirectionX = rand() % 2 == 0 ? -1.0f : 1.0f;
-	float randomDirectionY = -1.0f + ((float)rand() / RAND_MAX) * (1.0f - -1.0f);
+	float randomDirectionY = -1.0f + ((float)rand() / (float)RAND_MAX) * (1.0f - -1.0f);
 
 	Vector2 newVelocity = Vector2::Normalize(Vector2(randomDirectionX, randomDirectionY)) * _speed;
 

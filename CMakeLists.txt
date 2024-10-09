@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.4...3.27)
 
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY BOTH)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE BOTH)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE BOTH)
+
+project(Pong LANGUAGES CXX)
 
 
-project(Game LANGUAGES CXX)
 
-
-
-set(HodEngine_DIR D:/Perso/Dev/HodEngine)
+set(HodEngine_DIR E:/HodEngine)
 
 include(${HodEngine_DIR}/CMake/Global.cmake)
 
@@ -18,13 +20,13 @@ FindHodEngine()
 
 file(GLOB_RECURSE Srcs
 
-	"${PROJECT_SOURCE_DIR}/*.cpp"
+	"${PROJECT_SOURCE_DIR}/Sources/*.cpp"
 
-	"${PROJECT_SOURCE_DIR}/*.hpp"
+	"${PROJECT_SOURCE_DIR}/Sources/*.hpp"
 
-	"${PROJECT_SOURCE_DIR}/*.inl"
+	"${PROJECT_SOURCE_DIR}/Sources/*.inl"
 
-	"${PROJECT_SOURCE_DIR}/*.h"
+	"${PROJECT_SOURCE_DIR}/Sources/*.h"
 
 )
 
@@ -32,11 +34,11 @@ file(GLOB_RECURSE Srcs
 
 file(GLOB_RECURSE Includes
 
-	"${PROJECT_SOURCE_DIR}/*.hpp"
+	"${PROJECT_SOURCE_DIR}/Sources/*.hpp"
 
-	"${PROJECT_SOURCE_DIR}/*.inl"
+	"${PROJECT_SOURCE_DIR}/Sources/*.inl"
 
-	"${PROJECT_SOURCE_DIR}/*.h"
+	"${PROJECT_SOURCE_DIR}/Sources/*.h"
 
 )
 
@@ -48,15 +50,15 @@ assign_source_group(${Srcs}) # for VS
 
 if (APPLE)
 
-	add_library(Game SHARED ${Srcs} ${Includes})
+	add_library(Pong SHARED ${Srcs} ${Includes})
 
-	target_include_directories(Game PRIVATE ${PROJECT_SOURCE_DIR})
+	target_include_directories(Pong PRIVATE ${PROJECT_SOURCE_DIR}/Sources)
 
 else()
 
-	add_library(Game SHARED ${Srcs} ${Includes})
+	add_library(Pong SHARED ${Srcs} ${Includes})
 
-	set_property(TARGET Game PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
+	set_property(TARGET Pong PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
 
 
 
@@ -68,7 +70,7 @@ endif()
 
 
 
-target_include_directories(Game PUBLIC
+target_include_directories(Pong PUBLIC
 
 	${CMAKE_SOURCE_DIR}/Sources
 
@@ -78,7 +80,7 @@ target_include_directories(Game PUBLIC
 
 
 
-target_link_libraries(Game
+target_link_libraries(Pong
 
 	${HodEngine_CORE_LIBRARY}
 
@@ -100,9 +102,9 @@ target_link_libraries(Game
 
 
 
-target_compile_definitions(Game PUBLIC ${PLATFORM_DEFINE} ${RENDERER_DEFINE})
+target_compile_definitions(Pong PUBLIC ${PLATFORM_DEFINE} ${RENDERER_DEFINE})
 
-target_compile_definitions(Game PRIVATE PONG_EXPORT)
+target_compile_definitions(Pong PRIVATE PONG_EXPORT)
 
 
 

@@ -1,3 +1,5 @@
-build
-Generated
-Builds
+build*/
+Android/
+Generated/
+Builds/
+MemleakReport.txt
