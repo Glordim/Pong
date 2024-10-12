@@ -50,6 +50,7 @@ android {
             version = "3.22.1"
         }
     }
+    sourceSets["main"].assets.setSrcDirs(setOf(file("E:/Pong/Builds/Latest")))
     //sourceSets["main"].jniLibs.srcDirs("E:/HodEngine/build_android_x64/Release")
 }
 
