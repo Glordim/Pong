@@ -50,9 +50,8 @@ void Ball::LaunchBall()
 
 void Ball::OnUpdate()
 {
-	std::shared_ptr<Node2dComponent> node2d = GetEntity()->GetComponent<Node2dComponent>();
-	Vector2 position = node2d->GetWorldMatrix().GetTranslation();
-
+	//std::shared_ptr<Node2dComponent> node2d = GetEntity()->GetComponent<Node2dComponent>();
+	//Vector2 position = node2d->GetWorldMatrix().GetTranslation();
 	//World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(_lastVelocity) * 0.3f, Color(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
@@ -71,9 +70,8 @@ void Ball::OnCollisionEnter(const hod::physics::Collision& collision)
 
 	Vector2 newVelocity = Vector2::Normalize(Vector2::Reflect(_lastVelocity, collision._normal)) * _speed;
 
-	std::shared_ptr<Node2dComponent> node2d = GetEntity()->GetComponent<Node2dComponent>();
-	Vector2 position = node2d->GetWorldMatrix().GetTranslation();
-
+	//std::shared_ptr<Node2dComponent> node2d = GetEntity()->GetComponent<Node2dComponent>();
+	//Vector2 position = node2d->GetWorldMatrix().GetTranslation();
 	//World::GetInstance()->DrawDebugLine(position, position - Vector2::Normalize(_lastVelocity), Color(1.0f, 0.0f, 0.0f, 1.0f), 3.0f);
 	//World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(collision._normal), Color(0.0f, 0.0f, 1.0f, 1.0f), 3.0f);
 	//World::GetInstance()->DrawDebugLine(position, position + Vector2::Normalize(newVelocity), Color(0.0f, 1.0f, 0.0f, 1.0f), 3.0f);

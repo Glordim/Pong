@@ -14,12 +14,14 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
                 cppFlags += "-std=c++20"
             }
+        }
+        ndk {
+            //abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            abiFilters += listOf("x86_64")
         }
     }
 
@@ -48,9 +50,7 @@ android {
             version = "3.22.1"
         }
     }
-    sourceSets {
-        assets.srcDirs += '../../Builds/Android'
-    }
+    //sourceSets["main"].jniLibs.srcDirs("E:/HodEngine/build_android_x64/Release")
 }
 
 dependencies {
@@ -58,8 +58,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.games.activity)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(fileTree("E:/HodEngine/Externals/agdk-libraries-2023.3.0.0/jar-classes/game-activity") { include("*.jar") })
+    //implementation(fileTree("E:/HodEngine/Externals/agdk-libraries-2023.3.0.0/jar-classes/game-text-input") { include("*.jar") })
+    //implementation(libs.androidx.games.activity)
 }
